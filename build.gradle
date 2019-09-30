@@ -1,0 +1,66 @@
+buildscript {
+    dependencies {
+        classpath 'com.github.jruby-gradle:jruby-gradle-plugin:1.6.0'
+        classpath 'com.github.jruby-gradle:jruby-gradle-jar-plugin:1.6.0'
+        classpath 'nl.javadude.gradle.plugins:license-gradle-plugin:0.10.0'
+    }
+}
+
+import com.github.jrubygradle.*
+
+plugins {
+    id 'groovy'
+    id 'java'
+    id 'com.jfrog.bintray' version '1.8.4'
+    id 'net.researchgate.release' version '2.6.0'
+    id 'de.undercouch.download' version '3.4.3'
+    id 'nu.studer.plugindev' version '1.0.9'
+    id "com.github.hierynomus.license" version "0.15.0"
+}
+
+apply plugin: "com.github.jruby-gradle.jar"
+
+description 'Gradle plugin for LicenseFinder.'
+
+dependencies {
+    testCompile 'junit:junit:4.12'
+    testCompile 'org.spockframework:spock-core:1.2-groovy-2.5'
+    compile gradleApi()
+    compile 'net.java.dev.jna:jna:4.2.2'
+    compile 'net.java.dev.jna:jna-platform:4.2.2'
+    compile 'com.google.guava:guava:27.0.1-jre'
+    compile 'nl.javadude.gradle.plugins:license-gradle-plugin:0.10.0'
+    compile 'com.github.jruby-gradle:jruby-gradle-plugin:1.6.0'
+    jrubyExec "rubygems:license_finder:5.10.2"
+
+}
+
+bintray {
+    // to remove when upgraded plugindev to 1.0.4
+    user project.properties.bintrayUser
+    key project.properties.bintrayApiKey
+    pkg.repo = 'gradle-plugins'
+    pkg.userOrg = 'ullink'
+    pkg.version.gpg.sign = true
+}
+
+plugindev {
+    pluginId 'com.ullink.msbuild'
+    pluginName 'com.ullink.gradle:gradle-licenseFinder-plugin'
+    pluginImplementationClass 'com.ullink.LicenseFinder'
+    pluginDescription project.description
+    pluginLicenses 'Apache-2.0'
+    pluginTags 'gradle', 'plugin', 'licenseFinder', 'license', 'managment'
+    authorId 'josselinchevalay'
+    authorName 'Josselin Chevalay'
+    authorEmail 'josselin54.chevalay@gmail.com'
+    projectUrl "https://github.com/Ullink/${project.name}"
+    projectInceptionYear '2012'
+    done()
+}
+
+downloadLicenses {
+    dependencyConfiguration "compile"
+}
+
+afterReleaseBuild.dependsOn bintrayUpload
