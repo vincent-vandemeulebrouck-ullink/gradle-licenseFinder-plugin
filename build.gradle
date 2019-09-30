@@ -47,7 +47,7 @@ bintray {
 plugindev {
     pluginId 'com.ullink.msbuild'
     pluginName 'com.ullink.gradle:gradle-licenseFinder-plugin'
-    pluginImplementationClass 'com.ullink.LicenseFinder'
+    pluginImplementationClass 'com.ullink.gradle.licenseFinder.LicenseFinderPlugin'
     pluginDescription project.description
     pluginLicenses 'Apache-2.0'
     pluginTags 'gradle', 'plugin', 'licenseFinder', 'license', 'managment'
