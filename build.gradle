@@ -54,7 +54,7 @@ plugindev {
     authorId 'josselinchevalay'
     authorName 'Josselin Chevalay'
     authorEmail 'josselin54.chevalay@gmail.com'
-    projectUrl "https://github.com/Ullink/${project.name}"
+    projectUrl "https://github.com/Itiviti/${project.name}"
     projectInceptionYear '2012'
     done()
 }
