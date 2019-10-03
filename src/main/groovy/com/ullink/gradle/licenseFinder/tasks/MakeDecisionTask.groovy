@@ -1,7 +1,8 @@
-package com.ullink.gradle.licenseFinder
+package com.ullink.gradle.licenseFinder.tasks
 
 import com.github.jrubygradle.JRubyExec
 import com.ullink.gradle.entity.DependenciesDecisionEntity
+import com.ullink.gradle.utils.StreamUtil
 import org.gradle.api.DefaultTask
 import org.gradle.api.Project
 import org.gradle.api.tasks.TaskAction
@@ -17,7 +18,7 @@ class MakeDecisionTask extends DefaultTask {
     @Inject
     MakeDecisionTask(Project project){
         this.decisions = project.extensions.licenseFinder.decisions
-        this.entrypointFile = new File(this.class.getResource('/entrypoint.rb').toURI())
+        this.entrypointFile = project.extensions.licenseFinder.checkLicensesScript
         this.scriptArgs = ["dependencies", "add"]
     }
 

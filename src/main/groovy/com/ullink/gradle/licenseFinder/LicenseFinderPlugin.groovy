@@ -1,6 +1,10 @@
 package com.ullink.gradle.licenseFinder
 
 import com.github.jrubygradle.JRubyExec
+import com.ullink.gradle.licenseFinder.extension.LicenseFinderExtension
+import com.ullink.gradle.licenseFinder.tasks.MakeDecisionTask
+import com.ullink.gradle.licenseFinder.tasks.ProjectNameTask
+import com.ullink.gradle.licenseFinder.tasks.WhiteListTask
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import nl.javadude.gradle.plugins.license.LicensePlugin

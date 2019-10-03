@@ -1,5 +1,6 @@
-package com.ullink.gradle.licenseFinder
+package com.ullink.gradle.licenseFinder.extension
 
+import com.ullink.gradle.utils.StreamUtil
 import com.ullink.gradle.entity.DependenciesDecisionEntity
 import org.gradle.api.Project
 
@@ -15,10 +16,9 @@ class LicenseFinderExtension {
         this.dependencyConfiguration = "runtime"
         this.checkLicensesScriptArgs = ["--project-path=${project.path}", "--gradle-command=${project.path}"]
         this.checkLicensesDescription = "check License for dependencies project"
-        this.checkLicensesScript = new File(this.class.getResource('/entrypoint.rb').toURI())
+        this.checkLicensesScript = StreamUtil.streamToFile(this.class.getResourceAsStream('/entrypoint.rb'))
         this.decisions = []
         this.whiteList = ["MIT", "AGPL-3.0", "GPL-3.0", "LGPL-3.0", "MPL-2.0", "APACHE-2.0", "UNLICENSE"]
-
     }
 
     def  DependencyConfiguration(String value) {

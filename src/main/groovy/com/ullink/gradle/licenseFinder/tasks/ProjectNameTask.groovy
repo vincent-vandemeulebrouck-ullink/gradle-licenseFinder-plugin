@@ -1,6 +1,7 @@
-package com.ullink.gradle.licenseFinder
+package com.ullink.gradle.licenseFinder.tasks
 
 import com.github.jrubygradle.JRubyExec
+import com.ullink.gradle.utils.StreamUtil
 import org.gradle.api.DefaultTask
 import org.gradle.api.Project
 import org.gradle.api.tasks.TaskAction
@@ -13,7 +14,7 @@ class ProjectNameTask extends DefaultTask {
 
     @Inject
     ProjectNameTask(Project project) {
-        scriptEntrypoint = new File(this.class.getResource('/entrypoint.rb').toURI())
+        scriptEntrypoint = project.extensions.licenseFinder.checkLicensesScript
         scriptArgs = ["project_anme", "add"]
     }
 

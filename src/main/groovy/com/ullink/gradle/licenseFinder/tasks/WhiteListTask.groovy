@@ -1,4 +1,4 @@
-package com.ullink.gradle.licenseFinder
+package com.ullink.gradle.licenseFinder.tasks
 
 import com.github.jrubygradle.JRubyExec
 import org.gradle.api.DefaultTask
