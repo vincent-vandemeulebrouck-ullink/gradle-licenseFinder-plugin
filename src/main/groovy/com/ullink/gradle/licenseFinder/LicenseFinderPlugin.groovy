@@ -17,10 +17,7 @@ class LicenseFinderPlugin implements Plugin<Project> {
         project.apply plugin: LicensePlugin
         project.apply plugin: JRubyPlugin
 
-        if(!project.tasks.downloadLicenses)
-            project.tasks.create("downloadLicenses", {dependencyConfiguration extension.dependencyConfiguration})
-        else
-            project.tasks.downloadLicenses.dependencyConfiguration extension.dependencyConfiguration
+        project.tasks.downloadLicenses.dependencyConfiguration extension.dependencyConfiguration
 
         def checkLicensesTask  =  project.tasks.create('checkLicenses', JRubyExec)
         checkLicensesTask.description extension.checkLicensesDescription

@@ -1,13 +1,7 @@
 buildscript {
     dependencies {
-        classpath 'com.github.jruby-gradle:jruby-gradle-plugin:1.6.0'
-        classpath 'com.github.jruby-gradle:jruby-gradle-jar-plugin:1.6.0'
-        classpath 'nl.javadude.gradle.plugins:license-gradle-plugin:0.10.0'
     }
 }
-
-import com.github.jrubygradle.*
-
 plugins {
     id 'groovy'
     id 'java'
@@ -15,10 +9,7 @@ plugins {
     id 'net.researchgate.release' version '2.6.0'
     id 'de.undercouch.download' version '3.4.3'
     id 'nu.studer.plugindev' version '1.0.9'
-    id "com.github.hierynomus.license" version "0.15.0"
 }
-
-apply plugin: "com.github.jruby-gradle.jar"
 
 description 'Gradle plugin for LicenseFinder.'
 
@@ -31,7 +22,6 @@ dependencies {
     compile 'com.google.guava:guava:27.0.1-jre'
     compile 'nl.javadude.gradle.plugins:license-gradle-plugin:0.10.0'
     compile 'com.github.jruby-gradle:jruby-gradle-plugin:1.6.0'
-    jrubyExec "rubygems:license_finder:5.10.2"
 }
 
 bintray {
@@ -58,8 +48,5 @@ plugindev {
     done()
 }
 
-downloadLicenses {
-    dependencyConfiguration "compile"
-}
 
 afterReleaseBuild.dependsOn bintrayUpload
