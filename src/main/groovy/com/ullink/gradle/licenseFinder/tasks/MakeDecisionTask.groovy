@@ -24,8 +24,8 @@ class MakeDecisionTask extends DefaultTask {
 
     @TaskAction
     exec(){
-        decisions.forEach { descision ->
-            def args = this.scriptArgs.join(descision.projectName, decisions.shortLicenseName, decisions.version, (decisions.homepage) ? "--homepage=${descision.homepage}" : "", (descision.approove) ? "--approove" : "")
+        decisions.forEach { decision ->
+            def args = this.scriptArgs.join(decision.projectName, decisions.shortLicenseName, decisions.version, (decisions.homepage) ? "--homepage=${decision.homepage}" : "", (decision.approve) ? "--approve" : "")
             def ex = new JRubyExec(script: this.entrypointFile, scriptArgs: args)
             ex.exec()
         }
